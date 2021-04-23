@@ -2,7 +2,7 @@ export type TokenType = 'idToken' | 'authorizationToken';
 
 export interface Token {
   readonly type: TokenType;
-  value: string | undefined;
+  value: string;
   isValid: boolean
 }
 

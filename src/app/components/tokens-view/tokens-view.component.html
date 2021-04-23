@@ -1,17 +1,17 @@
 <div class="container">
   <div class="button">
-    <button mat-raised-button color="primary">Get Tokens</button>
+    <button mat-raised-button color="primary" (click)="loginClicked()">Get Tokens</button>
   </div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Id Token</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput [value]="idToken?.value" (change)="tokenChanged(authorizationToken.type, $event)"></textarea>
     </mat-form-field>
   </div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Authorization Token</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput [value]="authorizationToken?.value" (change)="tokenChanged(authorizationToken.type, $event)"></textarea>
     </mat-form-field>
   </div>
 </div>

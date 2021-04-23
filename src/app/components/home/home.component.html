@@ -1,7 +1,10 @@
 <main class="dashboard">
-  <app-tokens-view></app-tokens-view>
+  <app-tokens-view [idToken]="idToken"
+                   [authorizationToken]="authorizationToken"
+                   (login)="loginClicked()"
+                   (changeToken)="tokenChanged($event)"></app-tokens-view>
   <ng-container *ngIf="idToken && authorizationToken">
-    <app-tokens-use></app-tokens-use>
+    <app-tokens-use (sayHello)="sayHelloClicked()" (invalidate)="invalidateClicked()"></app-tokens-use>
   </ng-container>
 </main>
 

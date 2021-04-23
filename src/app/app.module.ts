@@ -30,7 +30,7 @@ import { TokensUseComponent } from './components/tokens-use/tokens-use.component
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

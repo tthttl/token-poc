@@ -1,5 +1,9 @@
 <div class="app-container">
   <app-home [idToken]="idToken | async"
             [authorizationToken]="authorizationToken | async"
+            (sayHello)="sayHelloClicked()"
+            (invalidate)="invalidateClicked()"
+            (login)="loginClicked()"
+            (changeToken)="tokenChanged($event)"
   ></app-home>
 </div>

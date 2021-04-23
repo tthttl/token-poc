@@ -1,11 +1,11 @@
 <div class="container">
   <div class="button">
-    <button mat-raised-button color="primary">Say hello</button>
+    <button mat-raised-button color="primary" (click)="sayHelloClicked()">Say hello</button>
   </div>
   <mat-form-field appearance="outline">
     <textarea matInput></textarea>
   </mat-form-field>
   <div class="button">
-    <button mat-raised-button color="primary">Invalidate token</button>
+    <button mat-raised-button color="primary" (click)="invalidateClicked()">Invalidate token</button>
   </div>
 </div>

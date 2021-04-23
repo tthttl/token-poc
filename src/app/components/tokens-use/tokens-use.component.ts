@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tokens-use',
   templateUrl: './tokens-use.component.html',
   styleUrls: ['./tokens-use.component.scss']
 })
-export class TokensUseComponent implements OnInit {
+export class TokensUseComponent {
 
-  constructor() { }
+  @Output() sayHello: EventEmitter<void> = new EventEmitter();
+  @Output() invalidate: EventEmitter<void> = new EventEmitter();
 
-  ngOnInit(): void {
+  sayHelloClicked(){
+    this.sayHello.emit();
+  }
+
+  invalidateClicked(){
+    this.invalidate.emit();
   }
 
 }
