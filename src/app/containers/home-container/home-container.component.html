@@ -1,3 +1,5 @@
 <div class="app-container">
-  <app-home></app-home>
+  <app-home [idToken]="idToken | async"
+            [authorizationToken]="authorizationToken | async"
+  ></app-home>
 </div>
