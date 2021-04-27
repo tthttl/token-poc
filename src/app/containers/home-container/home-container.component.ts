@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { OidcSecurityService, PublicEventsService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
+import { EventTypes } from '../../../../../angular-auth-oidc-client/dist/angular-auth-oidc-client';
+
 import { Token, TokenType } from '../../models/model';
 import { HelloService } from '../../services/hello.service';
 import { TokenService } from '../../services/token.service';
@@ -9,39 +13,48 @@ import { TokenService } from '../../services/token.service';
   templateUrl: './home-container.component.html',
   styleUrls: ['./home-container.component.scss']
 })
-export class HomeContainerComponent implements OnInit{
+export class HomeContainerComponent implements OnInit {
 
   idToken: Observable<Token>;
   authorizationToken: Observable<Token>;
+  apiResponse: Observable<string>;
 
   constructor(
     private tokenService: TokenService,
-    private helloService: HelloService
+    private helloService: HelloService,
+    private securityService: OidcSecurityService,
+    private eventService: PublicEventsService
   ) {
   }
 
   ngOnInit(): void {
     this.idToken = this.tokenService.getToken('idToken');
     this.authorizationToken = this.tokenService.getToken('authorizationToken');
+    this.eventService
+      .registerForEvents()
+      .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
+      .subscribe((config) => {
+        console.log('ConfigLoaded', config);
+      });
   }
 
-  loginClicked(){
-    // TODO remove and navigate to Airlock instead
-    this.tokenService.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+  loginClicked() {
+    this.securityService.authorize();
+/*    this.tokenService.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
       'idToken');
     this.tokenService.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-      'authorizationToken');
+      'authorizationToken');*/
   }
 
-  sayHelloClicked(){
-    this.helloService.sayHello();
+  sayHelloClicked() {
+    this.apiResponse = this.helloService.sayHello().pipe(take(1));
   }
 
-  invalidateClicked(){
+  invalidateClicked() {
     // delete or expire token(s)
   }
 
-  tokenChanged(payload: { type: TokenType, token: string}){
+  tokenChanged(payload: { type: TokenType, token: string }) {
     this.tokenService.setToken(payload.token, payload.type);
   }
 

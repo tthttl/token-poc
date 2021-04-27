@@ -14,6 +14,7 @@ import { HomeContainerComponent } from './containers/home-container/home-contain
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TokensViewComponent } from './components/tokens-view/tokens-view.component';
 import { TokensUseComponent } from './components/tokens-use/tokens-use.component';
+import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TokensUseComponent } from './components/tokens-use/tokens-use.component
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthConfigModule
   ],
   providers: [],
   bootstrap: [AppComponent]
