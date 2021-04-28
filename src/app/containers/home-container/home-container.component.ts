@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OidcSecurityService, PublicEventsService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
-import { filter, take } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { EventTypes } from '../../../../../angular-auth-oidc-client/dist/angular-auth-oidc-client';
 
 import { Token, TokenType } from '../../models/model';
@@ -40,14 +40,10 @@ export class HomeContainerComponent implements OnInit {
 
   loginClicked() {
     this.securityService.authorize();
-/*    this.tokenService.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-      'idToken');
-    this.tokenService.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-      'authorizationToken');*/
   }
 
   sayHelloClicked() {
-    this.apiResponse = this.helloService.sayHello().pipe(take(1));
+    this.helloService.sayHello().subscribe((result) => console.log(result));
   }
 
   invalidateClicked() {

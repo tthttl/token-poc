@@ -1,20 +1,27 @@
-export type TokenType = 'idToken' | 'authorizationToken';
+export type TokenType = 'idToken' | 'authorizationToken' | 'refreshToken';
+
+export interface JwtPayload {
+  readonly exp: number;
+  readonly groups: string [];
+  readonly iat: number;
+  readonly iss: string;
+  readonly sub: string;
+}
 
 export interface Token {
   readonly type: TokenType;
-  value: string;
-  isValid: boolean
+  readonly value: string;
+  readonly payload: JwtPayload;
+  readonly isValid: boolean;
 }
 
 export class TokenImpl implements Token{
-  readonly type: TokenType;
-  isValid: boolean;
-  value: string | undefined;
 
-  constructor(type: TokenType, value: string, isValid: boolean) {
-    this.type = type;
-    this.value = value;
-    this.isValid = isValid;
+  constructor(
+    readonly type: TokenType,
+    readonly value: string,
+    readonly payload: JwtPayload,
+    readonly isValid: boolean) {
   }
 
 }
