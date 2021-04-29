@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tokens-use',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class TokensUseComponent {
 
+  @Input() apiResponse: string;
   @Output() sayHello: EventEmitter<void> = new EventEmitter();
   @Output() invalidate: EventEmitter<void> = new EventEmitter();
 

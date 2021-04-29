@@ -1,6 +1,7 @@
 <div class="app-container">
   <app-home [idToken]="idToken | async"
             [authorizationToken]="authorizationToken | async"
+            [apiResponse]="apiResponse | async"
             (sayHello)="sayHelloClicked()"
             (invalidate)="invalidateClicked()"
             (login)="loginClicked()"

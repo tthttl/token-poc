@@ -10,6 +10,7 @@ export class HomeComponent {
 
   @Input() idToken: Token;
   @Input() authorizationToken: Token;
+  @Input() apiResponse: string;
   @Output() sayHello: EventEmitter<void> = new EventEmitter();
   @Output() invalidate: EventEmitter<void> = new EventEmitter();
   @Output() login: EventEmitter<void> = new EventEmitter();

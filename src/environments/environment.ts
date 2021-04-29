@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://caas-services-dev.css.ch/kern-kuzu-leistung/api/poc'
+  apiUrl: 'https://api-dev.css.ch/css/kuzu/api/poc'
 };
 
 /*

@@ -1,0 +1,37 @@
+.token-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.token-value{
+  min-width: 25rem;
+  max-width: 25rem;
+  min-height: 20rem;
+  max-height: 20rem;
+  overflow: hidden;
+
+  &__content{
+    font-size: 0.75rem;
+    word-wrap: break-word;
+  }
+
+  &--valid{
+    background-color: limegreen;
+  }
+}
+
+.token-payload{
+  margin-left: 2rem;
+  min-width: 17rem;
+  max-width: 17rem;
+  min-height: 20rem;
+  text-wrap: normal;
+  overflow: hidden;
+
+  &__content{
+    font-size: 1rem;
+    white-space: pre;
+  }
+}

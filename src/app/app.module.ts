@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +36,8 @@ import { TokenService } from './services/token.service';
     MatButtonModule,
     FormsModule,
     HttpClientModule,
-    AuthConfigModule
+    AuthConfigModule,
+    MatCardModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, deps: [TokenService]}

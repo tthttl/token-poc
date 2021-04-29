@@ -1,10 +1,13 @@
 <div class="container">
   <div class="button">
-    <button mat-raised-button color="primary" (click)="sayHelloClicked()">Say hello</button>
+    <button mat-raised-button color="primary" (click)="sayHelloClicked()">Call API</button>
   </div>
-  <mat-form-field appearance="outline">
-    <textarea matInput></textarea>
-  </mat-form-field>
+  <mat-card class="response">
+    <mat-card-subtitle>Response</mat-card-subtitle>
+    <mat-card-content class="token-value__content">
+      {{apiResponse}}
+    </mat-card-content>
+  </mat-card>
   <div class="button">
     <button mat-raised-button color="primary" (click)="invalidateClicked()">Invalidate token</button>
   </div>

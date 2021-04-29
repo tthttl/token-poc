@@ -43,7 +43,7 @@ export class HomeContainerComponent implements OnInit {
   }
 
   sayHelloClicked() {
-    this.helloService.sayHello().subscribe((result) => console.log(result));
+    this.apiResponse = this.helloService.sayHello();
   }
 
   invalidateClicked() {

@@ -1,18 +1,34 @@
 <div class="container">
   <div class="button">
-    <button mat-raised-button color="primary" (click)="loginClicked()">Get Tokens</button>
+    <button mat-raised-button color="primary" (click)="loginClicked()">Login</button>
   </div>
-  <div>
-    <mat-form-field appearance="outline">
-      <mat-label>Id Token</mat-label>
-      <textarea matInput [value]="idToken?.value" (change)="tokenChanged(authorizationToken.type, $event)"></textarea>
-    </mat-form-field>
+  <div class="token-container">
+    <mat-card class="token-value" [ngClass]="{'token-value--valid': idToken?.isValid}">
+      <mat-card-subtitle>Id Token</mat-card-subtitle>
+      <mat-card-content class="token-value__content">
+        {{idToken?.value}}
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="token-payload">
+      <mat-card-subtitle>Id Token Payload</mat-card-subtitle>
+      <mat-card-content class="token-payload__content">
+        {{idToken?.payload}}
+      </mat-card-content>
+    </mat-card>
   </div>
-  <div>
-    <mat-form-field appearance="outline">
-      <mat-label>Authorization Token</mat-label>
-      <textarea matInput [value]="authorizationToken?.value" (change)="tokenChanged(authorizationToken.type, $event)"></textarea>
-    </mat-form-field>
+  <div class="token-container">
+    <mat-card class="token-value" [ngClass]="{'token-value--valid': authorizationToken?.isValid}">
+      <mat-card-subtitle>Access Token</mat-card-subtitle>
+      <mat-card-content class="token-value__content">
+        {{authorizationToken?.value}}
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="token-payload">
+      <mat-card-subtitle>Access Token Payload</mat-card-subtitle>
+      <mat-card-content class="token-payload__content">
+        {{authorizationToken?.payload}}
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
 

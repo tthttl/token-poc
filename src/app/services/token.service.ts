@@ -17,7 +17,7 @@ export class TokenService {
   setToken(token: string, type: TokenType) {
     const payload: JwtPayload = this.extractPayload(token);
     const isValid = this.isJwtTokenValid(payload.exp);
-    const newToken = new TokenImpl(type, token, payload, isValid);
+    const newToken = new TokenImpl(type, token, this.formatPayload(payload), isValid);
     type === 'idToken' ? this.idToken.next(newToken) : this.authorizationToken.next(newToken);
   }
 
@@ -32,8 +32,8 @@ export class TokenService {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
-    const { exp, groups, iat, iss, sub }: JwtPayload = JSON.parse(jsonPayload);
-    return {exp, groups, iat, iss, sub};
+    const {exp, groups, iat, iss, sub, email, phone_number, jti}: JwtPayload = JSON.parse(jsonPayload);
+    return {exp, groups, iat, iss, sub, email, phone_number, jti};
   }
 
   isJwtTokenValid(exp: number, now: Date = new Date()): boolean {
@@ -42,6 +42,10 @@ export class TokenService {
       return true;
     }
     return isBefore(now, tokenExpirationDate);
+  }
+
+  formatPayload(payload: JwtPayload): string {
+    return JSON.stringify(payload).replace(/,/g, ', \n');
   }
 
 }
