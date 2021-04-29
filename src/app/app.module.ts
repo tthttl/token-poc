@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { AuthInterceptor } from 'angular-auth-oidc-client';
 import { routes } from '../routes';
 
 import { AppComponent } from './app.component';
@@ -16,8 +17,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TokensUseComponent } from './components/tokens-use/tokens-use.component';
 import { TokensViewComponent } from './components/tokens-view/tokens-view.component';
 import { HomeContainerComponent } from './containers/home-container/home-container.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { TokenService } from './services/token.service';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { TokenService } from './services/token.service';
     MatCardModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true, deps: [TokenService]}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     //{provide: APP_INITIALIZER, useFactory: reAuthenticate, multi: true, deps: [OidcSecurityService]},
   ],
   bootstrap: [AppComponent]
